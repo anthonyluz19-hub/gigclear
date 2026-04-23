@@ -1,5 +1,5 @@
 export const SE_TAX_RATE = 0.153;
-export const INCOME_TAX_EST = 0.12;
+export const INCOME_TAX_EST = 0.047;
 export const IRS_MILEAGE_RATE = 0.67;
 
 export function calcEntry({ gross = 0, hours = 0, miles = 0, gasExpense = 0, otherExpense = 0 }) {

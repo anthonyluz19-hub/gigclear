@@ -9,7 +9,7 @@ function calcEntry(entry) {
   const totalExpenses = entry.gas_expense + entry.other_expense;
   const netIncome = entry.gross_earnings - totalExpenses;
   const seTax = Math.max(0, netIncome * SE_TAX_RATE);
-  const taxSavings = Math.max(0, netIncome * (SE_TAX_RATE + 0.12)); // SE tax + estimated income tax
+  const taxSavings = Math.max(0, netIncome * (SE_TAX_RATE + 0.047)); // SE tax + estimated income tax = 20%
   const costPerMile = entry.miles_driven > 0
     ? totalExpenses / entry.miles_driven
     : 0;

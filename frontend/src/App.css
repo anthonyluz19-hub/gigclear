@@ -313,6 +313,33 @@ input.has-prefix { padding-left: 26px; }
   line-height: 1.4;
 }
 
+/* Hours total note (below time pickers) */
+.hours-total-note {
+  font-size: 12px;
+  color: var(--purple);
+  font-weight: 600;
+  margin: 4px 0 8px;
+}
+
+/* Tax disclaimer */
+.tax-disclaimer {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 6px 0 0;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Comparator hours note */
+.comp-hours-note {
+  font-size: 11px;
+  color: var(--purple);
+  font-weight: 600;
+  align-self: flex-end;
+  padding-bottom: 10px;
+  white-space: nowrap;
+}
+
 /* ═══ CALCULATOR LAYOUT ═══ */
 .calc-layout {
   display: grid;

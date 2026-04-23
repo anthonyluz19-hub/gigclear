@@ -130,9 +130,6 @@ export default function Calculator({ onSave, weeklyLog }) {
               ))}
             </select>
           </div>
-          {form.platform === 'DoorDash' && (
-            <p className="pay-note">💡 {t('calc.doordashPayNote')}</p>
-          )}
         </div>
 
         <div className="field">
@@ -254,6 +251,7 @@ export default function Calculator({ onSave, weeklyLog }) {
               sub={t('calc.savingsNote')}
               orange
             />
+            <p className="tax-disclaimer">{t('calc.taxDisclaimer')}</p>
 
             {(parseFloat(form.miles) || 0) > 0 && (
               <>
