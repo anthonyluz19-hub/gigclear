@@ -142,6 +142,56 @@ body {
 .lang-sep { opacity: .5; font-size: 10px; }
 .lang-next { color: rgba(255,255,255,.6); }
 
+/* ═══ PWA INSTALL BUTTON ═══ */
+.install-btn {
+  display: flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 20px;
+  padding: 6px 12px; cursor: pointer;
+  font-size: 12px; font-weight: 700;
+  color: #fff; letter-spacing: .3px;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.install-btn:hover { background: rgba(255,255,255,.28); }
+.install-btn-label { font-size: 12px; }
+
+/* iOS install hint banner */
+.ios-hint-banner {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%);
+  background: #1e1533;
+  border: 1px solid #7c3aed;
+  border-radius: 14px; padding: 13px 18px;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.5);
+  z-index: 1000;
+  max-width: calc(100vw - 32px);
+}
+.ios-hint-arrow {
+  font-size: 18px; color: #7c3aed; flex-shrink: 0;
+  animation: bounce-down .8s ease-in-out infinite alternate;
+}
+@keyframes bounce-down {
+  from { transform: translateY(-3px); }
+  to   { transform: translateY(3px); }
+}
+.ios-hint-text {
+  font-size: 13px; color: #ede9fe; line-height: 1.4;
+  white-space: nowrap;
+}
+.ios-hint-text strong { color: #fff; }
+.ios-hint-close {
+  background: rgba(255,255,255,.1); border: none;
+  color: rgba(255,255,255,.7); border-radius: 50%;
+  width: 24px; height: 24px; cursor: pointer;
+  font-size: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.ios-hint-close:hover { background: rgba(255,255,255,.2); color: #fff; }
+
 /* ═══ TAB BAR ═══ */
 .tab-bar {
   background: var(--surface);

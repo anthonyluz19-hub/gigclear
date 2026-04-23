@@ -1,5 +1,5 @@
 import './i18n';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Calculator from './components/Calculator';
 import Comparator from './components/Comparator';
@@ -7,6 +7,10 @@ import GoalTracker from './components/GoalTracker';
 import TaxReport from './components/TaxReport';
 import i18n from './i18n';
 import './App.css';
+
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.navigator.standalone === true ||
+  window.matchMedia('(display-mode: standalone)').matches;
 
 const TABS = ['calculator', 'comparator', 'goals', 'report'];
 
@@ -21,6 +25,29 @@ export default function App() {
   const { t } = useTranslation();
   const [tab, setTab] = useState('calculator');
   const [, forceRender] = useState(0);
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [showIOSHint, setShowIOSHint] = useState(false);
+
+  useEffect(() => {
+    const onPrompt = (e) => { e.preventDefault(); setDeferredPrompt(e); };
+    const onInstalled = () => setDeferredPrompt(null);
+    window.addEventListener('beforeinstallprompt', onPrompt);
+    window.addEventListener('appinstalled', onInstalled);
+    return () => {
+      window.removeEventListener('beforeinstallprompt', onPrompt);
+      window.removeEventListener('appinstalled', onInstalled);
+    };
+  }, []);
+
+  async function handleInstall() {
+    if (isIOS) { setShowIOSHint(true); return; }
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    setDeferredPrompt(null);
+  }
+
+  const showInstallBtn = !isStandalone && (deferredPrompt || isIOS);
 
   const [dark, setDark] = useState(() => {
     const saved = localStorage.getItem('gigclear_theme');
@@ -81,6 +108,12 @@ export default function App() {
             </div>
           </div>
           <div className="header-controls">
+            {showInstallBtn && (
+              <button className="install-btn" onClick={handleInstall} aria-label="Install app">
+                <span>📲</span>
+                <span className="install-btn-label">Install</span>
+              </button>
+            )}
             <button className="theme-btn" onClick={toggleDark} aria-label="Toggle dark mode">
               {dark ? '☀️' : '🌙'}
             </button>
@@ -122,6 +155,17 @@ export default function App() {
           <TaxReport weeklyLog={weeklyLog} onRemove={removeEntry} />
         )}
       </main>
+
+      {/* iOS install hint */}
+      {showIOSHint && (
+        <div className="ios-hint-banner" role="status">
+          <span className="ios-hint-arrow">▼</span>
+          <span className="ios-hint-text">
+            Tap <strong>Share</strong> then <strong>Add to Home Screen</strong>
+          </span>
+          <button className="ios-hint-close" onClick={() => setShowIOSHint(false)} aria-label="Dismiss">✕</button>
+        </div>
+      )}
     </div>
   );
 }
