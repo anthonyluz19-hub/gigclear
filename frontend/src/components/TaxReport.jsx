@@ -50,7 +50,7 @@ export default function TaxReport({ weeklyLog, onRemove }) {
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(22);
     doc.setFont('helvetica', 'bold');
-    doc.text('⚡ GigClear', 14, 12);
+    doc.text('GigClear', 14, 12);
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text(lang === 'es' ? 'Informe Fiscal' : 'Tax Report', 14, 20);

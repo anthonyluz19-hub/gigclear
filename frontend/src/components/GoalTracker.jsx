@@ -3,27 +3,33 @@ import { useTranslation } from 'react-i18next';
 import { fmtMoney, getWeekStart } from '../utils/calc';
 
 function RingProgress({ pct, reached }) {
-  const r = 54;
+  const r = 58;
   const circ = 2 * Math.PI * r;
   const offset = circ - Math.min(1, pct) * circ;
   const clampedPct = Math.min(100, Math.round(pct * 100));
   const { t } = useTranslation();
 
   return (
-    <div className="ring-wrap">
-      <svg width="140" height="140" viewBox="0 0 140 140">
-        <circle cx="70" cy="70" r={r} fill="none" stroke="var(--purple-border)" strokeWidth="12" />
+    <div className="ring-wrap" style={{ width: 148, height: 148 }}>
+      <svg width="148" height="148" viewBox="0 0 148 148">
+        <circle cx="74" cy="74" r={r} fill="none" stroke="rgba(124,58,237,.15)" strokeWidth="10" />
         <circle
-          cx="70" cy="70" r={r}
+          cx="74" cy="74" r={r}
           fill="none"
-          stroke={reached ? '#22c55e' : '#7c3aed'}
-          strokeWidth="12"
+          stroke={reached ? '#22c55e' : 'url(#ringGrad)'}
+          strokeWidth="10"
           strokeDasharray={circ}
           strokeDashoffset={offset}
           strokeLinecap="round"
-          transform="rotate(-90 70 70)"
-          style={{ transition: 'stroke-dashoffset .6s ease, stroke .3s' }}
+          transform="rotate(-90 74 74)"
+          style={{ transition: 'stroke-dashoffset .6s ease, stroke .3s', filter: reached ? 'drop-shadow(0 0 6px #22c55e)' : 'drop-shadow(0 0 8px rgba(124,58,237,.7))' }}
         />
+        <defs>
+          <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#a78bfa" />
+            <stop offset="100%" stopColor="#7c3aed" />
+          </linearGradient>
+        </defs>
       </svg>
       <div className="ring-label">
         <span className="ring-pct" style={{ color: reached ? 'var(--green)' : undefined }}>

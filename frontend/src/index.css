@@ -1,1 +1,2 @@
-/* base reset handled in App.css */
+/* prevent flash — dark is the only theme */
+html, body { background: #0a0a0f; }
