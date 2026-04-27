@@ -8,8 +8,18 @@ const FEATURES = [
 
 const STATS = ['landing.stat1', 'landing.stat2', 'landing.stat3'];
 
+const TIP_COUNT = 10;
+
+function getWeeklyTipKey() {
+  const now = new Date();
+  const yearStart = new Date(now.getFullYear(), 0, 1);
+  const week = Math.floor((now - yearStart) / (7 * 24 * 60 * 60 * 1000));
+  return `landing.tip${(week % TIP_COUNT) + 1}`;
+}
+
 export default function Landing({ onStart, theme, onToggleTheme, onToggleLang, lang }) {
   const { t } = useTranslation();
+  const tipKey = getWeeklyTipKey();
 
   return (
     <div className="landing">
@@ -47,6 +57,14 @@ export default function Landing({ onStart, theme, onToggleTheme, onToggleLang, l
             <p className="landing-feature-desc">{t(`${tk}.desc`)}</p>
           </div>
         ))}
+      </section>
+
+      <section className="landing-tip" aria-label={t('landing.tipLabel')}>
+        <div className="landing-tip-icon" aria-hidden="true">💡</div>
+        <div className="landing-tip-body">
+          <div className="landing-tip-label">{t('landing.tipLabel')}</div>
+          <p className="landing-tip-text">{t(tipKey)}</p>
+        </div>
       </section>
 
       <section className="landing-stats">

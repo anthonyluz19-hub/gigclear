@@ -975,6 +975,33 @@ input.has-prefix { padding-left: 24px; }
   line-height: 1.5;
 }
 
+.landing-tip {
+  display: flex; align-items: flex-start; gap: 14px;
+  max-width: 560px; width: 100%;
+  margin: 0 auto 28px;
+  padding: 16px 20px;
+  background: var(--purple-s);
+  border: 1px solid var(--purple-b);
+  border-radius: var(--radius);
+}
+.landing-tip-icon {
+  font-size: 22px; line-height: 1.2;
+  flex-shrink: 0;
+}
+.landing-tip-body {
+  display: flex; flex-direction: column; gap: 4px;
+  min-width: 0;
+}
+.landing-tip-label {
+  font-size: 10px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 1px;
+  color: var(--purple-l);
+}
+.landing-tip-text {
+  font-size: 14px; line-height: 1.5;
+  color: var(--text-2);
+}
+
 .landing-stats {
   display: flex; justify-content: center;
   gap: 32px; flex-wrap: wrap;
@@ -1003,6 +1030,8 @@ input.has-prefix { padding-left: 24px; }
   .landing-logo { font-size: 44px; }
   .landing-brand { font-size: 12px; letter-spacing: 2.5px; }
   .landing-cta { font-size: 15px; padding: 14px 28px; }
+  .landing-tip { padding: 14px 16px; gap: 12px; }
+  .landing-tip-text { font-size: 13px; }
   .landing-stats { gap: 18px; padding-top: 24px; }
 }
 
