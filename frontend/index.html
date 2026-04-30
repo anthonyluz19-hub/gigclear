@@ -10,7 +10,109 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="GigClear" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <title>GigClear — Know What You Keep</title>
+
+    <title>GigClear — Free real net income calculator for Uber, DoorDash &amp; gig drivers</title>
+    <meta name="description" content="Free calculator for Uber, DoorDash, Lyft and other 1099 gig workers. See your real hourly rate after gas, IRS mileage deduction and self-employment tax. No signup. Works on mobile." />
+    <link rel="canonical" href="https://gigclear.vercel.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gigclear.vercel.app/" />
+    <meta property="og:title" content="GigClear — Know what you actually make" />
+    <meta property="og:description" content="Free calculator for gig workers. See your real hourly rate after gas, mileage and self-employment tax. No signup." />
+    <meta property="og:image" content="https://gigclear.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GigClear — Know what you actually make" />
+    <meta name="twitter:description" content="Free calculator for Uber, DoorDash, Lyft and other 1099 gig workers. See your real hourly rate after gas, mileage and SE tax." />
+    <meta name="twitter:image" content="https://gigclear.vercel.app/og-image.png" />
+
+    <!-- JSON-LD: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "GigClear",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "description": "Free calculator for Uber, DoorDash, Lyft and other 1099 gig workers. Computes real net income, IRS mileage deduction and self-employment tax estimate.",
+      "url": "https://gigclear.vercel.app/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "inLanguage": ["en", "es"],
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Gig economy workers (rideshare and delivery drivers)"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does this replace an accountant?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. GigClear gives you accurate estimates of your net income and self-employment tax using the same numbers your accountant would use. For filing your annual return — especially if you work in multiple states or have other income — talk to a tax pro."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my numbers stored on your server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Everything stays on your phone or browser (localStorage). We don't have an account system, so there's nothing for us to store, leak or sell."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is the self-employment tax calculated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "15.3% (12.4% Social Security + 2.9% Medicare) on your net income (gross minus deductible expenses). GigClear applies it automatically once you enter your numbers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which platforms does it work for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Any gig platform where you receive a 1099 — Uber, Lyft, DoorDash, Instacart, Grubhub, Amazon Flex, Shipt, Roadie and more. The math is the same."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work in every US state?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The federal SE tax (15.3%) and the IRS standard mileage deduction ($0.70/mi for 2025) are the same in every state. State income tax varies — GigClear uses a 20% combined estimate as a rule of thumb. For your specific state, check with a tax pro."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it really free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, forever. No ads, no signup, no upsell. If we ever launch a paid version with extras (sync between devices, advanced reports), the calculator stays free."
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ2H2NJCS3"></script>
     <script>
