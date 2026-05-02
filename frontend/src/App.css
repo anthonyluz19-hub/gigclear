@@ -991,7 +991,7 @@ input.has-prefix { padding-left: 24px; }
   gap: 10px;
   max-width: 560px; width: 100%;
   align-self: center;
-  margin: 0 auto 28px;
+  margin: 64px auto 28px;
   padding: 18px 20px;
   background: var(--purple-s);
   border: 1px solid var(--purple-b);
