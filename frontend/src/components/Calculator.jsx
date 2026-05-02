@@ -268,7 +268,7 @@ export default function Calculator({ onSave, weeklyLog }) {
                     </span>
                   }
                   value={fmtMoney(calc.irsDeduction)}
-                  sub={`${parseFloat(form.miles).toFixed(0)} mi × $0.67`}
+                  sub={`${parseFloat(form.miles).toFixed(0)} mi × $0.70`}
                 />
               </>
             )}
