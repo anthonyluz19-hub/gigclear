@@ -9,6 +9,7 @@ const en = {
   'tab.report': 'Tax Report',
   // App
   tagline: 'Know exactly what you keep.',
+  backToLanding: 'Back to home',
   // Calculator
   'calc.title': 'Weekly Earnings Calculator',
   'calc.platform': 'Platform',
@@ -187,6 +188,7 @@ const es = {
   'tab.goals': 'Meta Semanal',
   'tab.report': 'Informe Fiscal',
   tagline: 'Sabe exactamente lo que ganas.',
+  backToLanding: 'Volver al inicio',
   'calc.title': 'Calculadora de Ganancias',
   'calc.platform': 'Plataforma',
   'calc.weekOf': 'Semana del',

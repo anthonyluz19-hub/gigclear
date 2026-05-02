@@ -189,6 +189,16 @@ body {
 .topbar-brand {
   display: flex; align-items: center; gap: 12px;
   min-width: 0;
+  background: none; border: 0; padding: 0; margin: 0;
+  color: inherit; font: inherit; text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: opacity .15s ease;
+}
+.topbar-brand:hover { opacity: .8; }
+.topbar-brand:focus-visible {
+  outline: 2px solid var(--purple-l);
+  outline-offset: 4px;
 }
 
 .topbar-logo {
@@ -976,20 +986,22 @@ input.has-prefix { padding-left: 24px; }
 }
 
 .landing-tip {
-  display: flex; align-items: flex-start; gap: 14px;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  gap: 10px;
   max-width: 560px; width: 100%;
   margin: 0 auto 28px;
-  padding: 16px 20px;
+  padding: 18px 20px;
   background: var(--purple-s);
   border: 1px solid var(--purple-b);
   border-radius: var(--radius);
 }
 .landing-tip-icon {
-  font-size: 22px; line-height: 1.2;
-  flex-shrink: 0;
+  font-size: 24px; line-height: 1;
 }
 .landing-tip-body {
   display: flex; flex-direction: column; gap: 4px;
+  align-items: center;
   min-width: 0;
 }
 .landing-tip-label {

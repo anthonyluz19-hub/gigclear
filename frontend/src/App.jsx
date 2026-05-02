@@ -128,13 +128,18 @@ export default function App() {
       {/* Main area */}
       <div className="main-wrap">
         <header className="topbar">
-          <div className="topbar-brand">
+          <button
+            className="topbar-brand"
+            onClick={() => setShowLanding(true)}
+            aria-label={t('backToLanding')}
+            title={t('backToLanding')}
+          >
             <span className="topbar-logo" aria-hidden="true">⚡</span>
             <div className="topbar-brand-text">
               <span className="topbar-name">GigClear</span>
               <span className="topbar-tag">{t('tagline')}</span>
             </div>
-          </div>
+          </button>
           <div className="topbar-actions">
             {showInstallBtn && (
               <button className="install-btn" onClick={handleInstall} aria-label="Install app">
