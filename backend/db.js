@@ -2,24 +2,38 @@ const Database = require('better-sqlite3');
 const fs = require('fs');
 const path = require('path');
 
-function resolveDbPath() {
-  const configured = process.env.DATABASE_PATH;
-  const fallback = path.join(__dirname, 'gigclear.db');
-  if (!configured) return fallback;
-
-  const dir = path.dirname(configured);
+function tryEnsureDir(dir) {
   try {
     fs.mkdirSync(dir, { recursive: true });
     fs.accessSync(dir, fs.constants.W_OK);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function resolveDbPath() {
+  const configured = process.env.DATABASE_PATH;
+  const fallback = path.join(__dirname, 'gigclear.db');
+
+  if (configured && tryEnsureDir(path.dirname(configured))) {
     return configured;
-  } catch (err) {
+  }
+  if (configured) {
     console.warn(
-      `[db] DATABASE_PATH=${configured} not writable (${err.code}). ` +
+      `[db] DATABASE_PATH=${configured} not writable. ` +
       `Falling back to ${fallback}. ` +
       `WARNING: data will not persist across deploys without a mounted volume.`
     );
-    return fallback;
   }
+
+  if (!tryEnsureDir(path.dirname(fallback))) {
+    const tmpFallback = path.join(require('os').tmpdir(), 'gigclear.db');
+    console.warn(`[db] fallback dir not writable, using ${tmpFallback} (also ephemeral).`);
+    fs.mkdirSync(path.dirname(tmpFallback), { recursive: true });
+    return tmpFallback;
+  }
+  return fallback;
 }
 
 const dbPath = resolveDbPath();
