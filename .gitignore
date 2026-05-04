@@ -15,6 +15,11 @@ frontend/dist/
 # Database
 *.db
 *.sqlite
+*.db-wal
+*.db-shm
+
+# Backend tmp (e2e + mock emails)
+backend/tmp/
 
 # OS
 .DS_Store

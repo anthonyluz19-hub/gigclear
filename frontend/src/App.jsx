@@ -6,7 +6,9 @@ import Comparator from './components/Comparator';
 import GoalTracker from './components/GoalTracker';
 import TaxReport from './components/TaxReport';
 import Landing from './components/Landing';
+import EmailCapture from './components/EmailCapture';
 import i18n from './i18n';
+import { syncEntry, deleteEntry as apiDeleteEntry } from './utils/api';
 import './App.css';
 
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -67,16 +69,44 @@ export default function App() {
 
   const [weeklyGoal, setWeeklyGoal] = useState(0);
 
+  const [subscribed, setSubscribed] = useState(
+    () => !!localStorage.getItem('gc_subscribed')
+  );
+  const [showEmailCapture, setShowEmailCapture] = useState(false);
+
   function saveEntry(entry) {
     const next = [...weeklyLog, entry];
     setWeeklyLog(next);
     localStorage.setItem('gc_log', JSON.stringify(next));
+    if (subscribed) syncEntry(entry);
+    maybePromptEmail(next.length);
   }
 
   function removeEntry(id) {
     const next = weeklyLog.filter((e) => e.id !== id);
     setWeeklyLog(next);
     localStorage.setItem('gc_log', JSON.stringify(next));
+    if (subscribed) apiDeleteEntry(id);
+  }
+
+  function maybePromptEmail(count) {
+    if (subscribed) return;
+    if (count < 3) return;
+    const last = Number(localStorage.getItem('gc_email_prompted') || 0);
+    const fourteenDays = 14 * 24 * 60 * 60 * 1000;
+    if (last && Date.now() - last < fourteenDays) return;
+    setShowEmailCapture(true);
+  }
+
+  function dismissEmailCapture() {
+    localStorage.setItem('gc_email_prompted', String(Date.now()));
+    setShowEmailCapture(false);
+  }
+
+  function onSubscribed(email) {
+    localStorage.setItem('gc_subscribed', email);
+    setSubscribed(true);
+    setShowEmailCapture(false);
   }
 
   function saveGoal(g) {
@@ -176,6 +206,14 @@ export default function App() {
           )}
         </main>
       </div>
+
+      {showEmailCapture && (
+        <EmailCapture
+          entries={weeklyLog}
+          onClose={dismissEmailCapture}
+          onSubscribed={onSubscribed}
+        />
+      )}
 
       {/* iOS install hint */}
       {showIOSHint && (
