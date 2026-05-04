@@ -1,7 +1,29 @@
 const Database = require('better-sqlite3');
+const fs = require('fs');
 const path = require('path');
 
-const dbPath = process.env.DATABASE_PATH || path.join(__dirname, 'gigclear.db');
+function resolveDbPath() {
+  const configured = process.env.DATABASE_PATH;
+  const fallback = path.join(__dirname, 'gigclear.db');
+  if (!configured) return fallback;
+
+  const dir = path.dirname(configured);
+  try {
+    fs.mkdirSync(dir, { recursive: true });
+    fs.accessSync(dir, fs.constants.W_OK);
+    return configured;
+  } catch (err) {
+    console.warn(
+      `[db] DATABASE_PATH=${configured} not writable (${err.code}). ` +
+      `Falling back to ${fallback}. ` +
+      `WARNING: data will not persist across deploys without a mounted volume.`
+    );
+    return fallback;
+  }
+}
+
+const dbPath = resolveDbPath();
+console.log(`[db] using ${dbPath}`);
 const db = new Database(dbPath);
 
 db.pragma('journal_mode = WAL');
